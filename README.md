@@ -1,6 +1,6 @@
 # HTML5 BootCamp base folders layout
 
-Please, use this branch as a base for you training phase. The idea is
+Please, use this repository as a base for you training phase. The idea is
 fork this project so everyone use the same folder structure for the
 exercises.
 
