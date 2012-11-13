@@ -1,0 +1,58 @@
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <meta charset="utf-8" />
+        <title>Globant :: Welcome to the HTML5 bootcamp</title>
+      </head>
+    <body>
+
+<div id = "div1">
+</div>
+
+
+    <button id="btn1">Button</button>
+    <input type="text" value="Ingresa tu nombre" id="alias" /> 
+    <script>
+      $(document).ready(function(){
+      $("#btn1").click(function(){
+
+        $.ajax({
+          dataType: "json",
+          type: 'GET',
+          url: "http://bootcamp.aws.af.cm/welcome/"+document.getElementById("alias").value,
+          crossDomain: true,
+
+          success: function(jsondata) {   
+            printOnConsole(jsondata.response);
+            writeText("div1",jsondata.response);
+            div1.style.color = 'green';
+          },
+
+          error: function (jqXHR, textStatus, errorThrown) {
+            writeText("div1","Something is not right");
+            div1.style.color = 'red';
+          }
+          });
+
+          });
+      });
+    </script>
+
+    <script>
+      function printOnConsole(resp){console.log(resp);}
+
+      function writeText(currentDivID, textToWrite) {
+        var currentDiv = document.getElementById(currentDivID);
+        currentDiv.innerHTML = textToWrite;
+      }
+
+      $(document).ready(function(){
+      alert("Finished loading site");
+      $('#alias').focus();
+      
+      });
+    </script>
+    </body>
+
+    </html>
