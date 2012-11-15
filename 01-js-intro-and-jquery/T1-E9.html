@@ -1,0 +1,45 @@
+    <!DOCTYPE html>
+<html>
+      <head>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <meta charset="utf-8" />
+        <title>Globant :: Welcome to the HTML5 bootcamp</title>
+        <LINK rel="stylesheet" type="text/css" href="style.css">
+      </head>
+    <body>
+      <div id = "title" class="divClass"> Movies: </div>
+		<div id = "movieStuff" class="divClass"> </div>
+		
+    	<script>
+    		$(document).ready(function(){
+    			console.info('This is info message');
+
+    			$.ajax({
+          			dataType: "json",
+         		 	type: 'GET',
+         		 	url: "http://bootcamp.aws.af.cm/movies",
+         		 	crossDomain: true,
+
+          			success: function(jsondata) {   
+          				var results=jsondata.d.results;
+          				for(var i=0;i<jsondata.d.results.length;i++){
+          		 	 		//console.info(results[i].Name);
+          		 	 		
+                    $('#movieStuff').append('<br><img id="theImg" src="'+results[i].BoxArt.SmallUrl+'" /></br>');
+                    $('#movieStuff').append('<div>'+results[i].Name+'</div>');
+                    $('#movieStuff').append('<div>'+results[i].ReleaseYear+'</div>');
+                    $('#movieStuff').append('<div>'+results[i].Synopsis+'</div>');
+          		 	 	}
+         			 },
+
+         		 	error: function (jqXHR, textStatus, errorThrown) {
+	          		  	console.log("Server error");
+          			}
+         		 });
+
+    		});
+    	</script>
+    </body>
+
+</html>
+
