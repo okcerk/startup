@@ -1,0 +1,105 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>My Page</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.css" />
+
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+</head> 
+<body> 
+
+<!-- Start of first page -->
+<div data-role="page" id="page1">
+
+	<div data-role="header">
+		<a href="#page2" data-role="button" class="ui-btn-right" data-transition="slidedown"> 2 </a>
+		<h1>Page 1</h1>
+		
+	</div><!-- /header -->
+
+	<div data-role="content">	
+		<p>This is the first page on this site.</p>		
+		<a href="#dialog1" data-rel="dialog">Open dialog</a>
+	</div><!-- /content -->
+
+	<a href="#" data-role="button" data-icon="star" id="buttonLoading">Start Loading Animation</a>
+
+	<div data-role="footer">
+		<h4>Page 1 Footer</h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+
+<!-- Start of second page -->
+<div data-role="page" id="page2">
+
+	<div data-role="header">
+		<h1>Page 2</h1>
+		<a href="#page1" data-role="button" data-transition="pop"> 1 </a>
+		<a href="#page3" data-role="button" data-transition="pop"> 3 </a>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+		<p>This is the second page which was kind of hidden at the beginning.</p>		
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>Page 2 Footer</h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+<!-- Start of third page -->
+<div data-role="page" id="page3">
+
+	<div data-role="header">
+		<h1>Page 3</h1>
+		<a href="#page2" data-role="button"> 2 </a>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+		<p>This is the third and last page.</p>		
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>Page 3 Footer</h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+<div data-role="page" id="dialog1">
+	<div data-role="header">
+		<h1> Dialog 1 - Hello! </h1>
+	</div>
+
+	<div data-role="content">
+		<p> No reason to live but we like it that way. </p>
+	</div>
+
+	<div data-role="footer">
+		<p> Now close this</p>
+	</div>
+</div>
+
+
+	<script>
+ 		$(document).ready(function() {
+ 			$("#buttonLoading").buttonMarkup({ corners: false });
+ 			$("#buttonLoading").click(function(){
+ 				$.mobile.showPageLoadingMsg();
+ 			});
+  			
+		 });
+	</script>
+
+	<script>
+ 		$(document).keypress(function(e) {
+ 			//if (e.which == 27) { alert("ESC pressed"); }
+ 			//ESC Key won't work i dont know why, so instead Enter key was used
+ 			if (e.which == 13) { $.mobile.hidePageLoadingMsg(); } //13 is the number key for ENTER key
+ 			
+  			
+		 });
+	</script>
+</body>
+</html>

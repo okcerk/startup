@@ -1,0 +1,61 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>My Page</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.css" />
+
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+</head> 
+<body> 
+<!-- Start of first page -->
+<div data-role="page" id="page1">
+
+	<div data-role="header">
+		<h1>Movies List</h1>
+	</div><!-- /header -->
+
+	<div data-role="content" id="movieStuff">	
+ 		<ul data-role="listview" id="movieList">
+
+		</ul>
+	</div>
+
+	<div data-role="footer">
+		<h4> </h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+    	<script>
+    		$(document).ready(function(){
+    			$.ajax({
+          			dataType: "json",
+         		 	type: 'GET',
+         		 	url: "http://bootcamp.aws.af.cm/movies",
+         		 	crossDomain: true,
+
+          			success: function(jsondata) {   
+          				var results=jsondata.d.results;
+          				var list='';
+          				for(var i=0;i<jsondata.d.results.length;i++){
+          		 	 		console.info(results[i].Name);
+                    		 list+='<li><a href="#"><img src="'+results[i].BoxArt.SmallUrl+'">'+results[i].Name+'</a></li></ul>'
+                    		 //para que haya thumbnail, poner en <img ...> : class="ui-li-icon", en este caso se rompe un poco por la dimension de los posters
+          		 	 	}
+          		 	 	
+          		 	 	$('#movieList').append(list);
+          		 	 	$('#movieList').listview('refresh');
+         			 },
+
+         		 	error: function (jqXHR, textStatus, errorThrown) {
+	          		  	console.log("Server error");
+          			}
+         		 });
+
+    		});
+    	</script>
+
+</body>
+
+</html>
