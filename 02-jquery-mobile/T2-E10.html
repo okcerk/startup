@@ -19,10 +19,10 @@
 		
 	</div><!-- /header -->
 
-	<div data-role="content">	
+	<div data-role="content" id="page1Content">	
 		<p id="content1">This is the first page on this site.</p>		
 		<a href="#dialog1" data-rel="dialog" data-role="button">Open dialog</a>
-		<a href="pages/sample1.html" data-role="button" rel="external">Go to Sample1</a>
+		<a data-role="button" rel="external" id="sampleButton">Go to Sample1</a>
 	</div><!-- /content -->
 
 	<a href="#" data-role="button" data-icon="star" id="buttonLoading">Start Loading Animation</a>
@@ -111,13 +111,18 @@
  			});
   			
 		 });
+
+ 		$('#sampleButton').on("click",function(){
+  			//$.mobile.loadPage("pages/sample1.html",{pageContainer: $('#page1Content')});
+  			$.mobile.changePage( "pages/sample1.html", { transition: "slideup"} );
+		});
 	</script>
 
 	<script>
  		$(document).keypress(function(e) {
  			//if (e.which == 27) { alert("ESC pressed"); }
  			//ESC Key won't work i dont know why, so instead Enter key was used
- 			if (e.which == 13) { $.mobile.hidePageLoadingMsg(); } //13 is the number key for ENTER key
+ 			if (e.which == 13) { $.mobile.hidePageLoadingMsg(); } //13 is the key number for ENTER key
 		 });
 	</script>
 </body>
