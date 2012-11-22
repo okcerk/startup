@@ -1,0 +1,195 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>My Page</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.css" />
+
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+  <script src="http://underscorejs.org/underscore.js"></script>
+</head> 
+<body> 
+<!-- Start of first page -->
+<div data-role="page" id="page1">
+
+	<div data-role="header">
+		<h1>Movies List</h1>
+	</div><!-- /header -->
+
+	<div data-role="content" id="movieStuff">	
+ 		<ul data-role="listview" id="movieList">
+
+		</ul>
+	</div>
+
+	<div data-role="footer">
+		<h4> </h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+<div data-role="page" id="dialog1">
+	<div data-role="header">
+		<h1> Dialog 1 - Hello! </h1>
+	</div>
+
+	<div data-role="content" id="dialogContent">
+		
+	</div>
+
+	<div data-role="footer">
+		<p> Now close this</p>
+	</div>
+</div>
+
+    	<script>
+    		var movies = [];
+    		$(document).ready(function(){
+
+
+              //Movie function version:
+              function Movie() {
+                //All private content
+                var attributes=[];
+                var subscribers=[];
+
+              this.play=function(){ 
+                this.publish("Now playing");
+              };
+
+              this.stop=function(){
+                  this.publish("Stopped playing");
+              };
+
+              this.set=function(key, val){
+              if (typeof this.attributes !== 'undefined'){
+                if (typeof this.attributes[key] == 'undefined') {
+                    this.attributes.length++;
+                }
+              }
+              else { this.attributes=new Array(); }
+              this.attributes[key] = val;
+              };
+
+              this.get=function(key){
+                return this.attributes[key];
+              };
+
+              this.subscribe=function(observer){
+              if (typeof this.subscribers == 'undefined') this.subscribers=new Array();
+              this.subscribers.push(observer); 
+              };
+
+              this.publish=function(text){
+                  if (typeof this.attributes !== 'undefined')
+                      if (typeof this.attributes["name"] !== 'undefined')
+                        for(var i=0;i<this.subscribers.length;i++){
+                          this.subscribers[i].fire(text+" "+this.attributes["name"]);
+                        }
+              };
+            }
+              //End of module pattern version of Movie
+
+              //Mixin
+                var Social = {
+                  share: function(friendName){
+                    console.log("Sharing "+this.attributes["name"]+" with "+friendName);
+                  },
+                  like: function(){
+                    console.log("Stuff liked");
+                  }
+                };
+              //End Mixin
+
+              //Apply Social mixin to Movie:
+              _.extend( Movie.prototype, Social );
+
+              //Actors class
+
+              function Actors(){
+                var actorsArray=[];
+
+                this.addActor=function(actor){
+                  if (typeof this.actorsArray == 'undefined') this.actorsArray=new Array();
+                  this.actorsArray.push(actor);
+
+                };
+
+                this.showActors=function(){
+                  
+                  var list="Actors: ";
+                  for(var i=0;i<this.actorsArray.length;i++){
+                    list+=this.actorsArray[i]+",";
+                  }
+                  console.log(list);
+                };
+
+              }
+
+              //end Actors class
+
+          		//////////////// Observer implementation
+
+          		var MovieObserver = Object.create(null);
+          		MovieObserver.fire=function(data){
+          			console.log(data);
+          		}
+
+          		/////////////// End observer implementation
+
+    			$.ajax({
+          			dataType: "json",
+         		 	type: 'GET',
+         		 	url: "http://bootcamp.aws.af.cm/movies",
+         		 	crossDomain: true,
+
+         		 	//var movieObs= Object.create(MovieObserver);
+
+          			success: function(jsondata) {   
+          				var results=jsondata.d.results;
+          				var list='';
+          				for(var i=0;i<jsondata.d.results.length;i++){
+          					//Data saving
+          					movies[i]=new Movie();
+          					movies[i].set("name",results[i].Name);
+          					movies[i].set("smallBoxArt",results[i].BoxArt.SmallUrl);
+          					movies[i].set("bigBoxArt",results[i].BoxArt.LargeUrl);
+          					movies[i].set("synopsis",results[i].Synopsis);
+          					movies[i].set("year",results[i].ReleaseYear);
+          					movies[i].subscribe(MovieObserver);
+          					movies[i].play();
+          					movies[i].stop();
+                    movies[i].share("Francella");
+
+                    var actorsMovie=new Actors();
+                    actorsMovie.addActor("Schwarzenneger"); 
+                    actorsMovie.addActor("Emilio Disi");
+                    actorsMovie.showActors();
+                    movies[i].set("actors",actorsMovie); // insert actorsMovie which is an Actors object as a new Movie attribute
+                    movies[i].get("actors").showActors(); // we get back the list of actors and print it out
+
+                    		 list+='<li><a href="#dialog1" data-rel="dialog" '+'id=button'+i+' ><img src="'+movies[i].get("smallBoxArt")+'">'+movies[i].get("name")+'</a></li></ul>';
+                    		 //para que haya thumbnail, poner en <img ...> : class="ui-li-icon", en este caso se rompe un poco por la dimension de los posters
+          		 	 	}
+          		 	 	
+          		 	 	$('#movieList').append(list);
+          		 	 	$('#movieList').listview('refresh');
+         			 },
+
+         		 	error: function (jqXHR, textStatus, errorThrown) {
+	          		  	console.log("Server error");
+          			}
+         		 });
+
+				$('#button0').click(function(){
+					$('#dialogContent').append("<p> HOLA </p>");
+					$('#dialogContent').content('refresh');
+
+
+				});
+		});
+    	</script>
+
+</body>
+
+</html>

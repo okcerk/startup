@@ -1,0 +1,61 @@
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <meta charset="utf-8" />
+        <title>Globant :: Welcome to the HTML5 bootcamp</title>
+      </head>
+    <body>
+
+<div id = "div1"> AJA
+</div>
+    <script>
+      $(document).ready(function(){
+
+        var Movie = Object.create(null);
+
+        Object.defineProperty(Movie, 'attributes', { writable: true });
+
+        Movie.play=function(){ console.log("PLAYING MOVIE");};
+        Movie.stop=function(){console.log("MOVIE STOPPED");};
+        Movie.set=function(key, val){
+          if (typeof this.attributes !== 'undefined'){
+            if (typeof this.attributes[key] == 'undefined') {
+              this.attributes.length++;
+            }
+            
+          }
+          else { this.attributes=new Array(); }
+          this.attributes[key] = val;
+        }
+
+
+        Movie.get=function(key){
+          return this.attributes[key];
+        }
+
+
+        Movie.set("anio","1980");
+        Movie.set("synopsis","worst movie ever");
+        console.log(Movie.attributes["synopsis"]);
+
+
+
+      });
+    </script>
+
+    <script>
+      function printOnConsole(resp){console.log(resp);}
+
+      function writeText(currentDivID, textToWrite) {
+        var currentDiv = document.getElementById(currentDivID);
+        currentDiv.innerHTML = textToWrite;
+      }
+
+      $(document).ready(function(){
+      
+      });
+    </script>
+    </body>
+
+    </html>
