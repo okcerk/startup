@@ -3,9 +3,40 @@
   <head>
     <meta charset="utf-8" />
     <title>Globant :: Welcome to the HTML5 bootcamp</title>
-    <script data-main="scripts/main" src="scripts/require-jquery.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+
+    <script data-main="scripts/main" src="scripts/require.js"></script>
   </head>
 <body>
-	<h1>My Sample Project</h1>
+	<!-- Start of first page -->
+<div data-role="page" id="page1">
+
+	<div data-role="header">
+		<h1>Director's page</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">		
+		<p> <a href="#page2" data-role="button" id="quotesButton">Click to see Director's quotes</a></p>	
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4 id="footer1"></h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+<div data-role="page" id="dialog1">
+	<div data-role="header">
+		<h1> Quotes </h1>
+	</div>
+
+	<div data-role="content" id="dialogQuotes">
+		
+	</div>
+
+	<div data-role="footer">
+		<p> </p>
+	</div>
+</div>
+
 </body>
 </html>

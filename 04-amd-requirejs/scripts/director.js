@@ -17,8 +17,11 @@ define(function(){
 		};
 		this.speak=function(){
 			console.log("Quotes from "+this.name+":");
-			for(var i=0;i<this.quotes.length;i++)
+			
+			for(var i=0;i<this.quotes.length;i++){
 				console.log(this.quotes[i]);
+				$('#dialogQuotes').append("<p>"+this.quotes[i]+"</p>") ;
+			}
 		};
 	};
 	return director;
