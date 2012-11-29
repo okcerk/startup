@@ -1,0 +1,22 @@
+body {  
+    margin: 0 auto;  
+    width: 940px;  
+    font: 13px/22px Helvetica, Arial, sans-serif;  
+    background: #f0f0f0;  
+}  
+
+div#mainText {
+	color: #5F9EA0;
+	-webkit-column-count: 1;
+	-webkit-column-gap: 20px;
+
+}
+
+img.imageClass {
+	height: 500px;
+    width: 50%;
+margin-left: auto;
+margin-right:auto;
+display: block;
+visibility: visible;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="styles.css" />
+<title>Bootcamp Topic 7</title>
+<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+
+</head>
+<body>
+<h1>T7</h1>
+<div id="mainText">
+	Remember remember the fifth of November, the Gunpowder Treason and Plot, I know of no reason why the Gundpowder Treason should ever be forgot.
+</div>
+<img src="godzilla.jpg" class="imageClass"/>
+<script>
+$(window).resize(function()
+{
+var winWidth = $(window).width();
+if (winWidth>1200){
+	$("#mainText").css("-webkit-column-count", "4");
+	$(".imageClass").css("height", "1000");
+	$(".imageClass").css("width", "100%");
+	$(".imageClass").css("visibility", "visible");
+}
+else{
+	if (winWidth>800){
+		$("#mainText").css("-webkit-column-count", "3");
+		$(".imageClass").css("height", "250");
+		$(".imageClass").css("width", "25%");
+		$(".imageClass").css("visibility", "visible");
+	}
+	else{
+		$("#mainText").css("-webkit-column-count", "1");
+		$(".imageClass").css("visibility", "hidden");
+	}
+}
+});
+</script>
+</body>
+</html>

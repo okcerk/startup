@@ -1,0 +1,99 @@
+body{
+	background: #f0f0f0;
+}
+
+div#logo{
+float: right;
+}
+
+.topHeader{
+	margin: 0 auto;  
+    width: 940px;  
+    font: 13px/22px Helvetica, Arial, sans-serif;  
+}
+
+ul#menu{
+	font-size:15px;
+	font-family: Arial;
+}
+
+
+.mainContent{
+	font-family: Helvetica;
+	display: inline;
+}
+
+header{
+	font-style: italic;
+}
+
+aside{
+	font-size:20px;
+	font-style: sans-serif;
+}
+
+footer{
+	font-style: Helvetica;
+}
+
+article#article1{
+	float:left;
+ top:0;
+left:0;
+	width:500px;
+
+}
+
+article#article2{
+position: relative; 
+}
+
+article{
+   -moz-box-shadow: 3px 3px 4px #444;
+  -webkit-box-shadow: 3px 3px 4px #444;
+  box-shadow: 3px 3px 4px #444;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#444444')";
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#444444');
+
+
+}
+a{
+	position:relative;
+}
+
+aside{
+	clear:both;
+	behavior:url(-ms-transform.htc);
+-moz-transform:rotate(15deg);
+-webkit-transform:rotate(15deg);
+-o-transform:rotate(15deg);
+-ms-transform:rotate(15deg);
+}
+
+.hiOne{
+	background: #B72E33;
+}
+
+.hiTwo{
+	background: #ACEFB2;
+}
+
+.hiThree{
+	background: #E4DB80;
+}
+
+span[class^="hi"]{
+	background: #E4DB80;
+}
+
+span[class$="One"]{
+	background: #ACEFB2;
+}
+
+label#item1{
+	color:#B72E33;
+}
+
+label#item2{
+	color:#ACEFB2;
+}
