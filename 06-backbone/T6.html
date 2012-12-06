@@ -9,38 +9,35 @@
 	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 	<script src='http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.2.1/underscore-min.js'></script>
   <script src='backbone-min.js'></script>
-</head> 
-<body> 
-<div data-role="page" id="home">
-    <div data-role="content">
+  </head> 
+
+  <body> 
+    <div data-role="page" id="home">
+      <div data-role="content">
         <ul data-role="listview" id="movieList" data-split-icon="delete" data-split-theme="d">
         </ul>
         <br />
         <fieldset class="ui-grid-a">
-           <div class="ui-block-a">
-              <input type="text" placeholder="Add new Amount" id="newMovieTitle" />
-           </div>
-           <div class="ui-block-b">
-             <input type="button" value="Add" id="addMovie"/>
-           </div>
+          <div class="ui-block-a">
+            <input type="text" placeholder="Add new Amount" id="newMovieTitle" />
+          </div>
+          <div class="ui-block-b">
+            <input type="button" value="Add" id="addMovie"/>
+          </div>
         </fieldset>
-    
+      </div>
+    </div>​
+
+    <div data-role="page" id="movieDialog">
+      <div data-role="header">
+        <h1 id="movieTitle"> </h1>
+      </div>
+      <div data-role="content" id="movieSynopsis"></div>
+      <div data-role="footer">
+        <p> </p>
+      </div>
     </div>
-</div>​
 
-<div data-role="page" id="movieDialog">
-  <div data-role="header">
-    <h1 id="movieTitle"> </h1>
-  </div>
-
-  <div data-role="content" id="movieSynopsis"></div>
-
-  <div data-role="footer">
-    <p> </p>
-  </div>
-</div>
-
-<script type="text/javascript" src="handler.js"></script>
-</body>
-
+    <script type="text/javascript" src="handler.js"></script>
+  </body>
 </html>
