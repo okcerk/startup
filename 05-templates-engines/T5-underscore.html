@@ -3,92 +3,39 @@
   <head>
     <meta charset="utf-8" />
     <title>Globant :: Welcome to the HTML5 bootcamp</title>
-      <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.css" />
-  <script src="scripts/jquery-1.8.2.min.js"></script>
-  <script src="scripts/jquery.mobile-1.2.0.min.js"></script>
-  <script src="scripts/underscore-min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.css" />
+    <script src="scripts/jquery-1.8.2.min.js"></script>
+    <script src="scripts/jquery.mobile-1.2.0.min.js"></script>
+    <script src="scripts/underscore-min.js"></script>
   </head>
-<body>
-<div id="div1"> Note: i dont get why it repeats twice, sorry</div>
+  <body>
+    <div id="div1"> Note: i dont get why it repeats twice, sorry</div>
 
-<script type="text/template" class="template">
+    <script type="text/template" class="template">
+      <h1>
+        <%- rc.name %>
+      </h1>
 
+      <h2>
+        <%- rc.profession %>
+      </h2>
 
-  <h1>
-      <%- rc.name %>
-  </h1>
+      <h2>
+        at <%- rc.workplace %>
+      </h2>
 
-  <h2>
-      <%- rc.profession %>
-  </h2>
-
-  <h2>
-      at <%- rc.workplace %>
-  </h2>
-
-  <div class="body">
-      Experience:
-      <ul>
-            <% _.each( rc.experience, function( listItem ){ %>
-                <li>
-                    <%- listItem.exp %>
-                </li>
-
-            <% }); %>
+      <div class="body">
+        Experience:
+        <ul>
+          <% _.each( rc.experience, function( listItem ){ %>
+            <li>
+              <%- listItem.exp %>
+            </li>
+          <% }); %>
         </ul>
-  </div>
+      </div>
+    </script>
 
-</script>
-
-
- <script type="text/javascript">
-
-$(document).ready(function() {
-        
-
-        $.ajax({
-                dataType: "json",
-                type: 'GET',
-                url: "data.json",//+document.getElementById("alias").value,
-                crossDomain: true,
-
-              success: function(jsondata) {   
-                
-                var response=jsondata;
-                 var exp=jsondata.experience;
-                 var expData=[];
-
-                  for(var i=0;i<exp.length;i++){
-                    expData=_.union(expData, [{'exp':exp[i]}]);
-                    
-                  }
-                  console.log(expData);
-
-                 _.templateSettings.variable = "rc";
-
-        var template = _.template(
-            $( "script.template" ).html()
-        );
-        
-                var templateData = {
-                  name : response.name,
-                  profession: response.profession,
-                  workplace: response.workplace,
-                  experience: expData
-                };
-
-              $( "#div1" ).after(template(templateData) );
-              //console.log(template(templateData));                
-              },
-
-              error: function (jqXHR, textStatus, errorThrown) {
-                writeText("div1","Something is not right");
-                div1.style.color = 'red';
-                }
-              });
-});
-
-</script>
-
-</body>
+    <script type="text/javascript" src="scripts/jsonhandler_us.js"></script>
+  </body>
 </html>
